@@ -19,7 +19,7 @@ cstackCOMMON COMMON 1 70 70 3 1
 intentry CODE 0 4 4 8 2
 strings STRING 0 92 92 16 2
 bssCOMMON COMMON 1 73 73 1 1
-$C:\Users\jorge\AppData\Local\Temp\shbk.o
+$C:\Users\jorge\AppData\Local\Temp\sfqg.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 0 2007 2007 2 2
@@ -69,12 +69,12 @@ STRING A8-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Laboratorio_2.X.production.o
-F cinit CODE >514:C:\Users\jorge\AppData\Local\Temp\shbk.s
-F cinit CODE >517:C:\Users\jorge\AppData\Local\Temp\shbk.s
-F cinit CODE >528:C:\Users\jorge\AppData\Local\Temp\shbk.s
-10 cinit CODE >534:C:\Users\jorge\AppData\Local\Temp\shbk.s
-10 cinit CODE >536:C:\Users\jorge\AppData\Local\Temp\shbk.s
-11 cinit CODE >537:C:\Users\jorge\AppData\Local\Temp\shbk.s
+F cinit CODE >514:C:\Users\jorge\AppData\Local\Temp\sfqg.s
+F cinit CODE >517:C:\Users\jorge\AppData\Local\Temp\sfqg.s
+F cinit CODE >528:C:\Users\jorge\AppData\Local\Temp\sfqg.s
+10 cinit CODE >534:C:\Users\jorge\AppData\Local\Temp\sfqg.s
+10 cinit CODE >536:C:\Users\jorge\AppData\Local\Temp\sfqg.s
+11 cinit CODE >537:C:\Users\jorge\AppData\Local\Temp\sfqg.s
 4 intentry CODE >38:C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
 5F text1 CODE >38:C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
 5F text1 CODE >39:C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
@@ -151,21 +151,21 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _IOCB 96 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\shbk.o
+___sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\sfqg.o
 _main 28 0 CODE 0 maintext dist/default/production\Laboratorio_2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
-start 18 0 CODE 0 init C:\Users\jorge\AppData\Local\Temp\shbk.o
+start 18 0 CODE 0 init C:\Users\jorge\AppData\Local\Temp\sfqg.o
 __CFG_BOREN$OFF 0 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __end_of_SEGMENT_MAP 150 0 STRING 0 strings dist/default/production\Laboratorio_2.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\shbk.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\shbk.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\shbk.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\shbk.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\shbk.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\shbk.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sfqg.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sfqg.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sfqg.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sfqg.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sfqg.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\jorge\AppData\Local\Temp\sfqg.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -174,13 +174,13 @@ _ANSELH 189 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
 _INTCON B 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 _OPTION_REG 81 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\shbk.o
-___stacklo 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\shbk.o
+___stackhi 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\sfqg.o
+___stacklo 0 0 ABS 0 - C:\Users\jorge\AppData\Local\Temp\sfqg.o
 __CFG_FCMEN$OFF 0 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 __CFG_MCLRE$OFF 0 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Laboratorio_2.X.production.o
 _TRISBbits 86 0 ABS 0 - dist/default/production\Laboratorio_2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\shbk.o
+___int_sp 0 0 STACK 2 stack C:\Users\jorge\AppData\Local\Temp\sfqg.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -231,7 +231,7 @@ __CFG_FOSC$INTRC_NOCLKOUT 0 0 ABS 0 - dist/default/production\Laboratorio_2.X.pr
 __end_of_ISR 124 0 CODE 0 text1 dist/default/production\Laboratorio_2.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 __stringtab 124 0 STRING 0 strings dist/default/production\Laboratorio_2.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\jorge\AppData\Local\Temp\shbk.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\jorge\AppData\Local\Temp\sfqg.o
 __pmaintext 28 0 CODE 0 maintext dist/default/production\Laboratorio_2.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 400E 0 CONFIG 0 config -
