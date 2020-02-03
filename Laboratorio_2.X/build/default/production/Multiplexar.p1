@@ -248,16 +248,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "5 Multiplexar.c
-[; ;Multiplexar.c: 5: void initMultiplex(unsigned int valor){
-[v _initMultiplex `(v ~T0 @X0 1 ef1`ui ]
+[; ;Multiplexar.c: 5: void initMultiplex(unsigned int valor, unsigned int valor2){
+[v _initMultiplex `(v ~T0 @X0 1 ef2`ui`ui ]
 {
 [e :U _initMultiplex ]
 [v _valor `ui ~T0 @X0 1 r1 ]
+[v _valor2 `ui ~T0 @X0 1 r2 ]
 [f ]
 "6
 [; ;Multiplexar.c: 6:     unsigned char const SEGMENT_MAP[16] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F, 0x77, 0x7C, 0X39, 0X5E, 0X79, 0X71};
-[v F1296 `Cuc ~T0 @X0 -> 16 `i s SEGMENT_MAP ]
-[i F1296
+[v F1298 `Cuc ~T0 @X0 -> 16 `i s SEGMENT_MAP ]
+[i F1298
 :U ..
 -> -> 63 `i `uc
 -> -> 6 `i `uc
@@ -289,7 +290,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
 "10
 [; ;Multiplexar.c: 10:                 PORTC = SEGMENT_MAP[valor];
-[e = _PORTC *U + &U F1296 * -> _valor `ux -> -> # *U &U F1296 `ui `ux ]
+[e = _PORTC *U + &U F1298 * -> _valor `ux -> -> # *U &U F1298 `ui `ux ]
 "11
 [; ;Multiplexar.c: 11:                 PORTDbits.RD0 = 1;
 [e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
@@ -306,8 +307,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Multiplexar.c: 14:                 PORTDbits.RD1 = 0;
 [e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
 "15
-[; ;Multiplexar.c: 15:                 PORTC = SEGMENT_MAP[valor+1];
-[e = _PORTC *U + &U F1296 * -> + _valor -> -> 1 `i `ui `ux -> -> # *U &U F1296 `ui `ux ]
+[; ;Multiplexar.c: 15:                 PORTC = SEGMENT_MAP[valor2];
+[e = _PORTC *U + &U F1298 * -> _valor2 `ux -> -> # *U &U F1298 `ui `ux ]
 "16
 [; ;Multiplexar.c: 16:                 PORTDbits.RD1 = 1;
 [e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
