@@ -2661,25 +2661,33 @@ void initMultiplex(unsigned int valor);
 
 char change = 0;
 unsigned int numero_ = 0;
+uint8_t contador1 = 0;
+unsigned int display1 = 0, display2 = 0;
+
 void __attribute__((picinterrupt(("")))) ISR (void){
     INTCONbits.GIE = 0;
     INTCONbits.RBIE = 0;
     INTCONbits.T0IE = 0;
     if(INTCONbits.T0IF == 1){
-        TMR0 = 4;
+        TMR0 = 99;
         change = 1;
     }
-    if(INTCONbits.RBIF == 1 && PORTBbits.RB0 == 1){
-        PORTA++;
-    }
     if(INTCONbits.RBIF == 1 && PORTBbits.RB1 == 1){
-        PORTA--;
+        contador1++;
+    }
+    if(INTCONbits.RBIF == 1 && PORTBbits.RB0 == 1){
+        contador1--;
+    }
+    if (PIR1bits.ADIF==1){
+        display1 = ADRESH * (0B00001111);
+        display2 = ADRESH * (0B11110000) / 16;
     }
     INTCONbits.GIE = 1;
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
+    PIR1bits.ADIF=0;
 }
 
 void main(void) {
@@ -2691,7 +2699,7 @@ void main(void) {
     TRISD = 0;
 
     ANSEL = 0;
-    ANSELH = 0;
+    ANSELH = 0B00000001;
 
     INTCON = 0;
     INTCONbits.GIE = 1;
@@ -2701,24 +2709,53 @@ void main(void) {
     INTCONbits.T0IF = 0;
 
     OPTION_REG = 0;
+    OPTION_REGbits.PS2 = 1;
 
-    TMR0 = 4;
+    TMR0 = 99;
 
     IOCB = 0;
     IOCBbits.IOCB0 = 1;
     IOCBbits.IOCB1 = 1;
 
+    PIE1bits.ADIE=1;
+    PIR1bits.ADIF=1;
+
+
+    ADCON0bits.ADCS=01;
+    ADCON0bits.CHS0=0;
+    ADCON0bits.CHS1=0;
+    ADCON0bits.CHS2=0;
+    ADCON0bits.CHS3=1;
+    ADCON0bits.GO_nDONE=0;
+    ADCON0bits.ADON=1;
+
+    ADCON1bits.ADFM=0;
+    ADCON1bits.VCFG0=0;
+    ADCON1bits.VCFG1=0;
+
     PORTA = 0;
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
+    PORTDbits.RD1 = 1;
+
+
+    contador1 = 0;
 
     while (1){
+        _delay((unsigned long)((10)*(4000000/4000.0)));
+        ADCON0bits.GO_DONE=1;
+        _delay((unsigned long)((10)*(4000000/4000.0)));
+
         if(change == 1){
-            initMultiplex(numero_);
+            if (PORTDbits.RD0 == 1){
+            initMultiplex(display1);
+            }else{
+            initMultiplex(display2);
+            }
             change = 0;
         }
-
+        PORTA = contador1;
     }
 
     return;

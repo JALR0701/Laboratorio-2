@@ -278,21 +278,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 "7
-[; ;Multiplexar.c: 7:             if(PORTDbits.RD0 == 1){
-[e $ ! == -> . . _PORTDbits 0 0 `i -> 1 `i 139  ]
+[; ;Multiplexar.c: 7:             if(PORTDbits.RD1 == 1){
+[e $ ! == -> . . _PORTDbits 0 1 `i -> 1 `i 139  ]
 {
 "8
-[; ;Multiplexar.c: 8:                 PORTDbits.RD0 = 0;
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
-"9
-[; ;Multiplexar.c: 9:                 PORTDbits.RD1 = 0;
+[; ;Multiplexar.c: 8:                 PORTDbits.RD1 = 0;
 [e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+"9
+[; ;Multiplexar.c: 9:                 PORTDbits.RD0 = 0;
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
 "10
 [; ;Multiplexar.c: 10:                 PORTC = SEGMENT_MAP[valor];
 [e = _PORTC *U + &U F1296 * -> _valor `ux -> -> # *U &U F1296 `ui `ux ]
 "11
-[; ;Multiplexar.c: 11:                 PORTDbits.RD1 = 1;
-[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
+[; ;Multiplexar.c: 11:                 PORTDbits.RD0 = 1;
+[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
 "12
 [; ;Multiplexar.c: 12:             }else {
 }
@@ -300,17 +300,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 139 ]
 {
 "13
-[; ;Multiplexar.c: 13:                 PORTDbits.RD1 = 0;
-[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
-"14
-[; ;Multiplexar.c: 14:                 PORTDbits.RD0 = 0;
+[; ;Multiplexar.c: 13:                 PORTDbits.RD0 = 0;
 [e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+"14
+[; ;Multiplexar.c: 14:                 PORTDbits.RD1 = 0;
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
 "15
-[; ;Multiplexar.c: 15:                 PORTC = SEGMENT_MAP[valor];
-[e = _PORTC *U + &U F1296 * -> _valor `ux -> -> # *U &U F1296 `ui `ux ]
+[; ;Multiplexar.c: 15:                 PORTC = SEGMENT_MAP[valor+1];
+[e = _PORTC *U + &U F1296 * -> + _valor -> -> 1 `i `ui `ux -> -> # *U &U F1296 `ui `ux ]
 "16
-[; ;Multiplexar.c: 16:                 PORTDbits.RD0 = 1;
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
+[; ;Multiplexar.c: 16:                 PORTDbits.RD1 = 1;
+[e = . . _PORTDbits 0 1 -> -> 1 `i `uc ]
 "17
 [; ;Multiplexar.c: 17:             }
 }

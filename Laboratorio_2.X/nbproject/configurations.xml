@@ -21,6 +21,7 @@
     </logicalFolder>
     <itemPath>Multiplexar.h</itemPath>
     <itemPath>Multiplexar.c</itemPath>
+    <itemPath>ADCConv.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

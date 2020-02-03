@@ -35,25 +35,33 @@
 
 char change = 0; //Bandera para multiplexar
 unsigned int numero_ = 0;
+uint8_t contador1 = 0;
+unsigned int display1 = 0, display2 = 0;
+
 void __interrupt() ISR (void){
     INTCONbits.GIE = 0; //deshabilitación de interrupciones
     INTCONbits.RBIE = 0;
     INTCONbits.T0IE = 0;
     if(INTCONbits.T0IF == 1){ // interrupción del timer0
-        TMR0 = 4; //Define el valor precagado del timer0
+        TMR0 = 99; //Define el valor precagado del timer0
         change = 1; //Activa el cambio de transistor
     }
-    if(INTCONbits.RBIF == 1 && PORTBbits.RB0 == 1){ //interrupción del puerto b
-        PORTA++;
+    if(INTCONbits.RBIF == 1 && PORTBbits.RB1 == 1){ //interrupción del puerto b
+        contador1++;
     }
-    if(INTCONbits.RBIF == 1 && PORTBbits.RB1 == 1){
-        PORTA--;
+    if(INTCONbits.RBIF == 1 && PORTBbits.RB0 == 1){
+        contador1--;
+    }
+    if (PIR1bits.ADIF==1){
+        display1 = ADRESH * (0B00001111);
+        display2 = ADRESH * (0B11110000) / 16;
     }
     INTCONbits.GIE = 1; //Reinicio de banderas y habilitación de interrupciones
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
+    PIR1bits.ADIF=0;
 }
 
 void main(void) {
@@ -65,7 +73,7 @@ void main(void) {
     TRISD = 0;
     
     ANSEL = 0; //Pines digitales
-    ANSELH = 0;
+    ANSELH = 0B00000001;
     
     INTCON = 0; //Habilitación de interrupciones y reinicio de banderas
     INTCONbits.GIE = 1;
@@ -75,25 +83,54 @@ void main(void) {
     INTCONbits.T0IF = 0;
     
     OPTION_REG = 0; //configuracion para desborde del timer 0
+    OPTION_REGbits.PS2 = 1;
 
-    TMR0 = 4; //Precarga del timer 0
+    TMR0 = 99; //Precarga del timer 0
     
     IOCB = 0; //Bits del puerto B que provocan interrupciones
     IOCBbits.IOCB0 = 1;
     IOCBbits.IOCB1 = 1;
     
+    PIE1bits.ADIE=1;
+    PIR1bits.ADIF=1;
+    //Configuracion ADC
+
+    ADCON0bits.ADCS=01;
+    ADCON0bits.CHS0=0;
+    ADCON0bits.CHS1=0;
+    ADCON0bits.CHS2=0;
+    ADCON0bits.CHS3=1;
+    ADCON0bits.GO_nDONE=0;
+    ADCON0bits.ADON=1;
+
+    ADCON1bits.ADFM=0;
+    ADCON1bits.VCFG0=0;
+    ADCON1bits.VCFG1=0;
+    
     PORTA = 0; //valor inicial de los puertos
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
+    PORTDbits.RD1 = 1;
+    
+    
+    contador1 = 0;
     
     while (1){ //Loop
-        if(change == 1){ //Cambio de transistor para cada interrupcion del timer 0
-            initMultiplex(numero_);
+        __delay_ms(10);
+        ADCON0bits.GO_DONE=1;
+        __delay_ms(10);
+        //PIR1bits.ADIF=0;
+        if(change == 1){//Cambio de transistor para cada interrupcion del timer 0
+            if (PORTDbits.RD0 == 1){
+            initMultiplex(display1);
+            }else{
+            initMultiplex(display2);
+            }
             change = 0; //Reinicio de bandera.
         }
-        
+        PORTA = contador1;
     }
     
-    return;
+    return; 
 }
