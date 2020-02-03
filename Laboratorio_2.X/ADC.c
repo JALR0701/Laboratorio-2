@@ -36,7 +36,6 @@
 char change = 0; //Bandera para multiplexar
 unsigned int numero_ = 0;
 uint8_t contador1 = 0;
-unsigned int display1 = 0, display2 = 0;
 
 void __interrupt() ISR (void){
     INTCONbits.GIE = 0; //deshabilitación de interrupciones
@@ -52,16 +51,11 @@ void __interrupt() ISR (void){
     if(INTCONbits.RBIF == 1 && PORTBbits.RB0 == 1){
         contador1--;
     }
-    if (PIR1bits.ADIF==1){
-        display1 = ADRESH * (0B00001111);
-        display2 = ADRESH * (0B11110000) / 16;
-    }
     INTCONbits.GIE = 1; //Reinicio de banderas y habilitación de interrupciones
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
-    PIR1bits.ADIF=0;
 }
 
 void main(void) {
@@ -73,7 +67,7 @@ void main(void) {
     TRISD = 0;
     
     ANSEL = 0; //Pines digitales
-    ANSELH = 0B00000001;
+    ANSELH = 0;
     
     INTCON = 0; //Habilitación de interrupciones y reinicio de banderas
     INTCONbits.GIE = 1;
@@ -91,42 +85,17 @@ void main(void) {
     IOCBbits.IOCB0 = 1;
     IOCBbits.IOCB1 = 1;
     
-    PIE1bits.ADIE=1;
-    PIR1bits.ADIF=1;
-    //Configuracion ADC
-
-    ADCON0bits.ADCS=01;
-    ADCON0bits.CHS0=0;
-    ADCON0bits.CHS1=0;
-    ADCON0bits.CHS2=0;
-    ADCON0bits.CHS3=1;
-    ADCON0bits.GO_nDONE=0;
-    ADCON0bits.ADON=1;
-
-    ADCON1bits.ADFM=0;
-    ADCON1bits.VCFG0=0;
-    ADCON1bits.VCFG1=0;
-    
     PORTA = 0; //valor inicial de los puertos
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTDbits.RD1 = 1;
     
-    
     contador1 = 0;
     
     while (1){ //Loop
-        __delay_ms(10);
-        ADCON0bits.GO_DONE=1;
-        __delay_ms(10);
-        //PIR1bits.ADIF=0;
-        if(change == 1){//Cambio de transistor para cada interrupcion del timer 0
-            if (PORTDbits.RD0 == 1){
-            initMultiplex(display1);
-            }else{
-            initMultiplex(display2);
-            }
+        if(change == 1){ //Cambio de transistor para cada interrupcion del timer 0
+            initMultiplex(numero_);
             change = 0; //Reinicio de bandera.
         }
         PORTA = contador1;
