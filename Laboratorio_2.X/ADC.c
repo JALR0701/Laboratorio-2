@@ -34,15 +34,12 @@
 #define _XTAL_FREQ 4000000
 
 char change = 0; //Bandera para multiplexar
-unsigned int numero_ = 0;
-uint8_t contador1 = 0;
-unsigned int d1 = 0, d2 = 0;
+unsigned int numero_ = 0, contador1 = 0;
 
 void __interrupt() ISR (void){
     INTCONbits.GIE = 0; //deshabilitación de interrupciones
     INTCONbits.RBIE = 0;
     INTCONbits.T0IE = 0;
-    INTCONbits.PEIE = 0;
     if(INTCONbits.T0IF == 1){ // interrupción del timer0
         TMR0 = 99; //Define el valor precagado del timer0
         change = 1; //Activa el cambio de transistor
@@ -53,17 +50,11 @@ void __interrupt() ISR (void){
     if(INTCONbits.RBIF == 1 && PORTBbits.RB0 == 1){
         contador1--;
     }
-    if(PIR1bits.ADIF == 1){
-        d1 = ADRESH * (0B00001111);
-        d2 = ADRESH * (0B11110000)/16;
-    }
     INTCONbits.GIE = 1; //Reinicio de banderas y habilitación de interrupciones
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
-    INTCONbits.PEIE = 1;
-    PIR1bits.ADIF = 0;
 }
 
 void main(void) {
@@ -101,19 +92,9 @@ void main(void) {
     
     contador1 = 0;
     
-    INTCONbits.PEIE = 1;
-    PIE1 = 0B01000000;
-    PIR1 = 0;
-    ANSELHbits.ANS8 = 1;
-    ADCON0 = 0B01100001;
-    ADCON1 = 0;
-    
     while (1){ //Loop
-        __delay_ms(10);
-        ADCON0bits.GO_DONE = 1;
-        __delay_ms(10);
         if(change == 1){ //Cambio de transistor para cada interrupcion del timer 0
-            initMultiplex(d1, d2);
+            initMultiplex(numero_);
             change = 0; //Reinicio de bandera.
         }
         PORTA = contador1;

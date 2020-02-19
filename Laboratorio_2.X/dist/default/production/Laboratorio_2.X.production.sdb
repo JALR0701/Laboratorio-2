@@ -3,16 +3,12 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"41 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
+"39 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"69
+"60
 [v _main main `(v  1 e 1 0 ]
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\pic\__eeprom.c
@@ -23,11 +19,8 @@
 [v _initMultiplex initMultiplex `(v  1 e 1 0 ]
 "36 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
 [v _change change `uc  1 e 1 0 ]
-"38
-[v _contador1 contador1 `uc  1 e 1 0 ]
-"39
-[v _d1 d1 `ui  1 e 2 0 ]
-[v _d2 d2 `ui  1 e 2 0 ]
+"37
+[v _contador1 contador1 `ui  1 e 2 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
@@ -50,7 +43,7 @@
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S182 . 1 `uc 1 RD0 1 0 :1:0 
+[s S162 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -60,8 +53,8 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "369
-[u S191 . 1 `S182 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES191  1 e 1 @8 ]
+[u S171 . 1 `S162 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES171  1 e 1 @8 ]
 "459
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
 [s S22 . 1 `uc 1 RBIF 1 0 :1:0 
@@ -81,49 +74,9 @@
 ]
 [u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
-"537
-[v _PIR1 PIR1 `VEuc  1 e 1 @12 ]
-[s S76 . 1 `uc 1 TMR1IF 1 0 :1:0 
-`uc 1 TMR2IF 1 0 :1:1 
-`uc 1 CCP1IF 1 0 :1:2 
-`uc 1 SSPIF 1 0 :1:3 
-`uc 1 TXIF 1 0 :1:4 
-`uc 1 RCIF 1 0 :1:5 
-`uc 1 ADIF 1 0 :1:6 
-]
-"553
-[u S84 . 1 `S76 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES84  1 e 1 @12 ]
-"1238
-[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-"1245
-[v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
-[s S230 . 1 `uc 1 ADON 1 0 :1:0 
-`uc 1 GO_nDONE 1 0 :1:1 
-`uc 1 CHS 1 0 :4:2 
-`uc 1 ADCS 1 0 :2:6 
-]
-"1276
-[s S235 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 GO 1 0 :1:1 
-`uc 1 CHS0 1 0 :1:2 
-`uc 1 CHS1 1 0 :1:3 
-`uc 1 CHS2 1 0 :1:4 
-`uc 1 CHS3 1 0 :1:5 
-`uc 1 ADCS0 1 0 :1:6 
-`uc 1 ADCS1 1 0 :1:7 
-]
-[s S244 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 nDONE 1 0 :1:1 
-]
-[s S247 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 GO_DONE 1 0 :1:1 
-]
-[u S250 . 1 `S230 1 . 1 0 `S235 1 . 1 0 `S244 1 . 1 0 `S247 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES250  1 e 1 @31 ]
 "1346
 [v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
-[s S125 . 1 `uc 1 PS 1 0 :3:0 
+[s S105 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -131,17 +84,17 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S132 . 1 `uc 1 PS0 1 0 :1:0 
+[s S112 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S136 . 1 `S125 1 . 1 0 `S132 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES136  1 e 1 @129 ]
+[u S116 . 1 `S105 1 . 1 0 `S112 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES116  1 e 1 @129 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S98 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S78 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -151,20 +104,18 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1495
-[u S107 . 1 `S98 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES107  1 e 1 @134 ]
+[u S87 . 1 `S78 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES87  1 e 1 @134 ]
 "1540
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-"1702
-[v _PIE1 PIE1 `VEuc  1 e 1 @140 ]
 "2416
 [v _IOCB IOCB `VEuc  1 e 1 @150 ]
-[s S152 . 1 `uc 1 IOCB 1 0 :8:0 
+[s S132 . 1 `uc 1 IOCB 1 0 :8:0 
 ]
 "2436
-[s S154 . 1 `uc 1 IOCB0 1 0 :1:0 
+[s S134 . 1 `uc 1 IOCB0 1 0 :1:0 
 `uc 1 IOCB1 1 0 :1:1 
 `uc 1 IOCB2 1 0 :1:2 
 `uc 1 IOCB3 1 0 :1:3 
@@ -173,63 +124,27 @@
 `uc 1 IOCB6 1 0 :1:6 
 `uc 1 IOCB7 1 0 :1:7 
 ]
-[u S163 . 1 `S152 1 . 1 0 `S154 1 . 1 0 ]
-[v _IOCBbits IOCBbits `VES163  1 e 1 @150 ]
-"2977
-[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
+[u S143 . 1 `S132 1 . 1 0 `S134 1 . 1 0 ]
+[v _IOCBbits IOCBbits `VES143  1 e 1 @150 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-[s S205 . 1 `uc 1 ANS8 1 0 :1:0 
-`uc 1 ANS9 1 0 :1:1 
-`uc 1 ANS10 1 0 :1:2 
-`uc 1 ANS11 1 0 :1:3 
-`uc 1 ANS12 1 0 :1:4 
-`uc 1 ANS13 1 0 :1:5 
-]
-"3464
-[u S212 . 1 `S205 1 . 1 0 ]
-[v _ANSELHbits ANSELHbits `VES212  1 e 1 @393 ]
-"69 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
+"60 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
 [v _main main `(v  1 e 1 0 ]
 {
-"123
+"104
 } 0
 "5 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\Multiplexar.c
 [v _initMultiplex initMultiplex `(v  1 e 1 0 ]
 {
-[v initMultiplex@valor valor `ui  1 p 2 8 ]
-[v initMultiplex@valor2 valor2 `ui  1 p 2 10 ]
+[v initMultiplex@valor valor `ui  1 p 2 2 ]
 "6
 [v initMultiplex@SEGMENT_MAP SEGMENT_MAP `DC[16]uc  1 s 16 SEGMENT_MAP ]
 "18
 } 0
-"41 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
+"39 C:\Users\jorge\MPLABXProjects\Laboratorio-2\Laboratorio_2.X\ADC.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"67
-} 0
-"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
-{
-"17
-[v ___wmul@product product `ui  1 a 2 4 ]
-"15
-[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
-"53
-} 0
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
-{
-"10
-[v ___awdiv@quotient quotient `i  1 a 2 2 ]
-"11
-[v ___awdiv@sign sign `uc  1 a 1 1 ]
-[v ___awdiv@counter counter `uc  1 a 1 0 ]
-"5
-[v ___awdiv@divisor divisor `i  1 p 2 6 ]
-[v ___awdiv@dividend dividend `i  1 p 2 8 ]
-"41
+"58
 } 0

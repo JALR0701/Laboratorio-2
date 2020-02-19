@@ -11,7 +11,7 @@
 #include <xc.h>
 #include <stdint.h>
 
-void initMultiplex(unsigned int valor, unsigned int valor2);
+void initMultiplex(unsigned int valor);
 
 #endif	/* MULTIPLEXAR_H */
 

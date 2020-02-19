@@ -2654,21 +2654,18 @@ typedef uint16_t uintptr_t;
 # 12 "./Multiplexar.h" 2
 
 
-void initMultiplex(unsigned int valor, unsigned int valor2);
+void initMultiplex(unsigned int valor);
 # 33 "ADC.c" 2
 
 
 
 char change = 0;
-unsigned int numero_ = 0;
-uint8_t contador1 = 0;
-unsigned int d1 = 0, d2 = 0;
+unsigned int numero_ = 0, contador1 = 0;
 
 void __attribute__((picinterrupt(("")))) ISR (void){
     INTCONbits.GIE = 0;
     INTCONbits.RBIE = 0;
     INTCONbits.T0IE = 0;
-    INTCONbits.PEIE = 0;
     if(INTCONbits.T0IF == 1){
         TMR0 = 99;
         change = 1;
@@ -2679,17 +2676,11 @@ void __attribute__((picinterrupt(("")))) ISR (void){
     if(INTCONbits.RBIF == 1 && PORTBbits.RB0 == 1){
         contador1--;
     }
-    if(PIR1bits.ADIF == 1){
-        d1 = ADRESH * (0B00001111);
-        d2 = ADRESH * (0B11110000)/16;
-    }
     INTCONbits.GIE = 1;
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
-    INTCONbits.PEIE = 1;
-    PIR1bits.ADIF = 0;
 }
 
 void main(void) {
@@ -2727,19 +2718,9 @@ void main(void) {
 
     contador1 = 0;
 
-    INTCONbits.PEIE = 1;
-    PIE1 = 0B01000000;
-    PIR1 = 0;
-    ANSELHbits.ANS8 = 1;
-    ADCON0 = 0B01100001;
-    ADCON1 = 0;
-
     while (1){
-        _delay((unsigned long)((10)*(4000000/4000.0)));
-        ADCON0bits.GO_DONE = 1;
-        _delay((unsigned long)((10)*(4000000/4000.0)));
         if(change == 1){
-            initMultiplex(d1, d2);
+            initMultiplex(numero_);
             change = 0;
         }
         PORTA = contador1;
